@@ -1,0 +1,22 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jason.neo.dao.ITmUserDao" >
+    <resultMap id="BaseResultMap" type="com.jason.neo.dao.dto.TmUser" >
+        <result column="ID_NO" property="idNo" jdbcType="VARCHAR" />
+        <result column="NAME" property="name" jdbcType="VARCHAR" />
+        <result column="JPA_VERSION" property="jpaVersion" jdbcType="INTEGER" />
+    </resultMap>
+    <sql id="Base_Column_List" >
+    ID_NO, NAME, JPA_VERSION
+  </sql>
+    <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.String" >
+        select
+        <include refid="Base_Column_List" />
+        from TM_USER
+        where ID_NO = #{idNo,jdbcType=VARCHAR}
+    </select>
+
+    <insert id="insert" parameterType="com.jason.neo.dao.dto.TmUser">
+      INSERT INTO TM_USER (ID_NO, NAME, JPA_VERSION) VALUES (#{idNo, jdbcType=VARCHAR}, #{name, jdbcType=VARCHAR}, #{jpaVersion, jdbcType=INTEGER})
+    </insert>
+</mapper>
